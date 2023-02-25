@@ -1,37 +1,29 @@
 const { Schema, model } = require('mongoose');
 
 const MovilSchema = Schema({
-    nombre: {
-        type: String,
-        required: [true, 'El nombre es obligatorio'],
+    movil: {
+        type: Number,
         unique: true
     },
     estado: {
         type: Boolean,
-        default: true,
-        required: true
-    },
-    usuario: {
-        type: Schema.Types.ObjectId,
-        ref: 'Usuario',
-        required: true
+        default: false,
     },
     ubicacion: {
-        type: String,
+        type: [Number],
     },
     chofer: {
         type: String,
     },
     doctor: {
         type: String,
+    },
+    estado: {
+        type: String
+    },
+    servicio: {
+        type: Boolean
     }
 });
-
-
-MovilSchema.methods.toJSON = function() {
-    const { __v, estado, ...data  } = this.toObject();
-    return data;
-}
-
 
 module.exports = model( 'Movil', MovilSchema );

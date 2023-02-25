@@ -50,6 +50,18 @@ const ServicioSchema = Schema({
     categoria: {
         type: String,
     },
+    estado: {
+        type: String,
+    },
+    movil: {
+        type: String,
+    },
+    chofer: {
+        type: String,
+    },
+    medico: {
+        type: String,
+    },
     traslado: {
         type: Boolean,
         default: false

@@ -62,23 +62,20 @@ const crearServicio = async(req, res = response ) => {
 
 const actualizarServicio = async( req, res = response ) => {
 
-   /*  const { id } = req.params;
-    const { estado, usuario, ...data } = req.body;
+     const { id } = req.params;
+     console.log(id);
+     console.log(req.body);
+    const { ...data } = req.body;
 
-    if( data.nombre ) {
-        data.nombre  = data.nombre.toUpperCase();
-    }
+    const servicio = await Servicio.findOneAndUpdate({_id: data._id}, data, { new: true }, (err, dbServicios) => {
+        if (err) throw new Error(err);
 
-    data.usuario = req.usuario._id;
-
-    const producto = await Producto.findByIdAndUpdate(id, data, { new: true });
-
-    await producto
-        .populate('usuario', 'nombre')
-        .populate('categoria', 'nombre')
-        .execPopulate();
+        res.json( {
+            ok: true,
+            dbServicios
+        } );
+    });
         
-    res.json( producto ); */
 
 }
 

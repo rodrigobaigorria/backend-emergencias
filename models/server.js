@@ -25,6 +25,7 @@ class Server {
         this.io.on('connection', (socket) => {
             console.log(socket.id);
         })
+        this.app.use(express.static('public'));
 
         // Conectar a base de datos
         this.conectarDB();

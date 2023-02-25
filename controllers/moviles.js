@@ -4,21 +4,14 @@ const { Movil } = require('../models');
 
 const obtenerMoviles = async(req, res = response ) => {
 
-    /* const { limite = 5, desde = 0 } = req.query;
-    const query = { estado: true };
-
-    const [ total, categorias ] = await Promise.all([
-        Categoria.countDocuments(query),
-        Categoria.find(query)
-            .populate('usuario', 'nombre')
-            .skip( Number( desde ) )
-            .limit(Number( limite ))
-    ]);
+   Movil.find({}, (err, DBMovil) => {
+    if (err) throw new Error(err);
 
     res.json({
-        total,
-        categorias
-    }); */
+        ok: true,
+        DBMovil
+    })
+   })
 }
 
 const obtenerMovil = async(req, res = response ) => {
@@ -33,28 +26,24 @@ const obtenerMovil = async(req, res = response ) => {
 
 const crearMovil = async(req, res = response ) => {
 
-    /* const nombre = req.body.nombre.toUpperCase();
+    const body = req.body;
+    console.log(body);
 
-    const categoriaDB = await Categoria.findOne({ nombre });
+    const movilDB = await Movil.findOne({movil: body.movil});
 
-    if ( categoriaDB ) {
+    if ( movilDB ) {
         return res.status(400).json({
-            msg: `La categoria ${ categoriaDB.nombre }, ya existe`
+            msg: `El movil ${ movilDB.movil }, ya existe`
         });
     }
 
     // Generar la data a guardar
-    const data = {
-        nombre,
-        usuario: req.usuario._id
-    }
 
-    const categoria = new Categoria( data );
+    await new Movil(body).save();
 
-    // Guardar DB
-    await categoria.save();
-
-    res.status(201).json(categoria); */
+    res.json({
+        ok: true
+    });
 
 }
 
