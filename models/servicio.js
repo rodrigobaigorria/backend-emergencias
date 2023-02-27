@@ -5,6 +5,15 @@ const ServicioSchema = Schema({
         type: String,
         required: true
     },
+    despacho: {
+        type: String,
+    },
+    arribo: {
+        type: String,
+    },
+    deriva: {
+        type: Boolean,
+    },
     servicio: {
         type: String,
         required: true

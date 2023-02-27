@@ -32,6 +32,9 @@ const crearServicio = async(req, res = response ) => {
     
     let body = req.body;
     body.fecha = Date.now();
+    if (body._id) {
+        body._id = null;
+    }
 
     const totalServicios = await Servicio.find({});
     body.servicio = totalServicios.length + 3100;
@@ -48,8 +51,8 @@ const crearServicio = async(req, res = response ) => {
             return;
         } else {
             console.log('guardamos el paciente');
-            const paciente = new Paciente( body );
-            paciente.save();
+             const paciente = new Paciente( body );
+             paciente.save();
         }
     })
 
@@ -66,6 +69,12 @@ const actualizarServicio = async( req, res = response ) => {
      console.log(id);
      console.log(req.body);
     const { ...data } = req.body;
+    if (data.estado === 'Despachado') {
+        data.despacho = await Date.now();
+    }
+    if (data.estado === 'Arribo') {
+        data.arribo = await Date.now();
+    }
 
     const servicio = await Servicio.findOneAndUpdate({_id: data._id}, data, { new: true }, (err, dbServicios) => {
         if (err) throw new Error(err);
