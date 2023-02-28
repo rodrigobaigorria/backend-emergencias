@@ -16,6 +16,7 @@ class Server {
         this.paths = {
             auth:       '/api/auth',
             via:     '/api/via',
+            prevencion:     '/api/prevencion',
             moviles: '/api/moviles',
             servicios:  '/api/servicios',
             paciente:  '/api/paciente',
@@ -68,6 +69,7 @@ class Server {
         // this.app.use( this.paths.buscar, require('../routes/buscar'));
         this.app.use( this.paths.moviles, require('../routes/moviles'));
         this.app.use( this.paths.via, require('../routes/via'));
+        this.app.use( this.paths.prevencion, require('../routes/prevencion'));
         this.app.use( this.paths.servicios, require('../routes/servicio'));
         this.app.use( this.paths.paciente, require('../routes/paciente'));
         this.app.use( this.paths.usuarios, require('../routes/usuarios'));
