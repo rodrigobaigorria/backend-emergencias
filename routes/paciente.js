@@ -3,6 +3,7 @@ const { Router } = require('express');
 const {
     obtenerPaciente,
      } = require('../controllers/paciente');
+const { validarJWT } = require('../middlewares');
 
 const router = Router();
 
@@ -14,7 +15,7 @@ const router = Router();
 // router.get('/', obtenerPacientes );
 
 // Obtener un servicio por telefono - publico
-router.get('/:telefono', obtenerPaciente );
+router.get('/:telefono', [validarJWT], obtenerPaciente );
 
 // Crear categoria - privado - cualquier persona con un token válido
 // router.post('/', crearPaciente );

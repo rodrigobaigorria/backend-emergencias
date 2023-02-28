@@ -1,12 +1,13 @@
 const { Router } = require('express');
 const { getPrevencion, addPrevencion } = require('../controllers/prevencion');
+const { validarJWT } = require('../middlewares');
 
 const router = Router();
 
 
-router.get('/', getPrevencion )
+router.get('/', [validarJWT], getPrevencion )
 
-router.post('/', addPrevencion )
+router.post('/', [validarJWT], addPrevencion )
 
 
 

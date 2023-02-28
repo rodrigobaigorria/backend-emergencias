@@ -1,25 +1,25 @@
 
 const { Router } = require('express');
-const { check } = require('express-validator');
 
 const { usuariosGet,
         usuariosPut,
         usuariosPost,
         usuariosDelete,
         usuariosPatch } = require('../controllers/usuarios');
+const { validarJWT } = require('../middlewares');
 
 const router = Router();
 
 
-router.get('/', usuariosGet );
+router.get('/', [validarJWT], usuariosGet );
 
-router.put('/:id', usuariosPut );
+router.put('/:id', [validarJWT], usuariosPut );
 
-router.post('/', usuariosPost );
+router.post('/', [validarJWT], usuariosPost );
 
-router.delete('/:id', usuariosDelete );
+router.delete('/:id', [validarJWT], usuariosDelete );
 
-router.patch('/', usuariosPatch );
+router.patch('/', [validarJWT], usuariosPatch );
 
 
 

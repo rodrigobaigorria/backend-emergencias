@@ -16,16 +16,16 @@ const router = Router();
  */
 
 //  Obtener todos los servicios - publico
-router.get('/', obtenerServicios );
+router.get('/', [validarJWT], obtenerServicios );
 
 // Obtener un servicio por telefono - publico
-router.get('/:telefono', obtenerServicio );
+router.get('/:telefono', [validarJWT], obtenerServicio );
 
 // Crear categoria - privado - cualquier persona con un token válido
-router.post('/', crearServicio );
+router.post('/', [validarJWT], crearServicio );
 
 // Actualizar - privado - cualquiera con token válido
-router.put('/:id', actualizarServicio );
+router.put('/:id', [validarJWT], actualizarServicio );
 
 // Borrar una categoria - Admin
 router.delete('/:id',[

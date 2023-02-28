@@ -5,6 +5,7 @@ const { crearMovil,
         obtenerMovil,
         actualizarMovil, 
         borrarMovil } = require('../controllers/moviles');
+const { validarJWT } = require('../middlewares');
 
 const router = Router();
 
@@ -13,19 +14,19 @@ const router = Router();
  */
 
 //  Obtener todas las categorias - publico
-router.get('/', obtenerMoviles );
+router.get('/', [validarJWT], obtenerMoviles );
 
 // Obtener una categoria por id - publico
-router.get('/:id', obtenerMovil );
+router.get('/:id', [validarJWT], obtenerMovil );
 
 // Crear movil - privado - cualquier persona con un token válido
-router.post('/', crearMovil );
+router.post('/', [validarJWT], crearMovil );
 
 // Actualizar - privado - cualquiera con token válido
-router.put('/:id', actualizarMovil );
+router.put('/:id', [validarJWT], actualizarMovil );
 
 // Borrar una categoria - Admin
-router.delete('/:id', borrarMovil);
+router.delete('/:id', [validarJWT], borrarMovil);
 
 
 
