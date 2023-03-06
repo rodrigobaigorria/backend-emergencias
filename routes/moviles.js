@@ -23,7 +23,7 @@ router.get('/:id', [validarJWT], obtenerMovil );
 router.post('/', [validarJWT], crearMovil );
 
 // Actualizar - privado - cualquiera con token válido
-router.put('/:id', [validarJWT], actualizarMovil );
+router.put('/:user', [validarJWT], actualizarMovil );
 
 // Borrar una categoria - Admin
 router.delete('/:id', [validarJWT], borrarMovil);

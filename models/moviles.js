@@ -2,12 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const MovilSchema = Schema({
     movil: {
-        type: Number,
+        type: String,
         unique: true
     },
     estado: {
-        type: Boolean,
-        default: false,
+        type: String,
     },
     ubicacion: {
         type: [Number],
@@ -15,10 +14,10 @@ const MovilSchema = Schema({
     chofer: {
         type: String,
     },
-    doctor: {
+    medico: {
         type: String,
     },
-    estado: {
+    enfermero: {
         type: String
     },
     servicio: {

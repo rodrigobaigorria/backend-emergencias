@@ -48,16 +48,13 @@ const crearMovil = async(req, res = response ) => {
 }
 
 const actualizarMovil = async( req, res = response ) => {
+    
+    const { user } = req.params;
+    const { servicio, movil, ...data } = req.body;
 
-   /*  const { id } = req.params;
-    const { estado, usuario, ...data } = req.body;
+    const movilUp = await Movil.findOneAndUpdate({movil: user}, data, { new: true });
 
-    data.nombre  = data.nombre.toUpperCase();
-    data.usuario = req.usuario._id;
-
-    const categoria = await Categoria.findByIdAndUpdate(id, data, { new: true });
-
-    res.json( categoria ); */
+    res.json( movilUp );
 
 }
 
